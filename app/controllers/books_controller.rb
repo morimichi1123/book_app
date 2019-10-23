@@ -17,13 +17,17 @@ class BooksController < ApplicationController
         else
             render 'new'
         end
-      end
+    end
 
-      def book_params
-        params.require(:book).permit(:title, :author, :publisher, :genre)
-      end
+    def book_params
+      params.require(:book).permit(:title, :author, :publisher, :genre)
+    end
 
-      def show
-        @book = Book.find(params[:id])
-      end
+    def show
+      @book = Book.find(params[:id])
+    end
+
+    def list
+      @books = Book.paginate(page: params[:page]).search(params[:search])
+    end
 end
