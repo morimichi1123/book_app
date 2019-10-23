@@ -1,0 +1,23 @@
+<% provide(:title,"Add Book Content") %>
+  <aside class="col-md-4">
+        <body>
+            <h1>Add Book Content</h1>
+            <div class="container">
+                <table border="1" style="border-collapse: collapse">
+                    <tr>
+                        <th>title</th>
+                        <th>author</th>
+                        <th>publisher</th>
+                        <th>genre</th>
+                    </tr>
+
+                    <tr>
+                        <td><%= @book.title %> </td>
+                        <td><%= @book.author %> </td>
+                        <td><%= @book.publisher %> </td>
+                        <td><%= @book.genre %> </td>
+                    </tr>
+                </table>
+            </div>
+        </body>
+    </aside>
