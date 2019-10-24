@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-
   root 'static_pages#home'
-  get  '/help',    to: 'static_pages#help'
-  get  '/about',   to: 'static_pages#about'
-  get  '/contact', to: 'static_pages#contact'
+  #get  '/help',    to: 'static_pages#help'
+  #get  '/about',   to: 'static_pages#about'
+  #get  '/contact', to: 'static_pages#contact'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
@@ -14,6 +12,7 @@ Rails.application.routes.draw do
   get '/list',     to: 'books#list'
   get '/show',     to: 'books#show'
   get '/new',      to: 'books#new'
+# get '/index',    to: 'static_pages#index'
   resources :users
   resources :books
 end

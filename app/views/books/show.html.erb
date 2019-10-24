@@ -16,6 +16,10 @@
                         <td><%= @book.author %> </td>
                         <td><%= @book.publisher %> </td>
                         <td><%= @book.genre %> </td>
+                        <td>
+                        | <%= link_to  "edit" , edit_book_path(@book.id)  %>
+                        | <%= link_to "delete", @book, method: :delete,  data: { confirm: "You sure?" } %>
+                        </td>
                     </tr>
                 </table>
             </div>

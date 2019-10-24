@@ -1,12 +1,20 @@
 class BooksController < ApplicationController
-    def show
-    end
-
     def new
-        @book = Book.new
+      @book = Book.new
     end
 
     def edit
+      @book = Book.find(params[:id])
+    end
+
+    def update
+      @book = Book.find(params[:id])
+      if @book.update_attributes(book_params)
+        flash[:success] = "Book Information Updated"
+        redirect_to @book
+      else
+        render 'edit'
+      end
     end
 
     def create
@@ -14,7 +22,7 @@ class BooksController < ApplicationController
         if @book.save
             flash[:success] = "Success Add New Book"
             redirect_to @book
-        else
+          else
             render 'new'
         end
     end
@@ -29,5 +37,11 @@ class BooksController < ApplicationController
 
     def list
       @books = Book.paginate(page: params[:page]).search(params[:search])
+    end
+
+    def destroy
+      Book.find(params[:id]).destroy
+      flash[:success] = "Book deleted"
+      redirect_to list_path
     end
 end
