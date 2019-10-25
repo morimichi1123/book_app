@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-
 RSpec.describe SessionsController, type: :controller do
   describe 'GET #new' do
     it 'returns http success using "get"' do
       get :new
       expect(response).to have_http_status(:success)
     end
+
     feature 'login_path' do
         before do
           visit login_path
@@ -15,5 +15,6 @@ RSpec.describe SessionsController, type: :controller do
         expect(page).to have_http_status(:success)
         end
     end
+    #ログイン失敗のケース
   end
 end

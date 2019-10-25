@@ -71,6 +71,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
+#↑重なっている？、境界値チェック
 
   context "パスワードが一致しない時" do
       it "一致していない" do

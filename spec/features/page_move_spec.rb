@@ -74,5 +74,93 @@ RSpec.feature "page_move", type: :feature do
         expect(page).to have_content  'doesn\'t match'
       end
     end
+  feature "ログイン失敗" do
+    before do
+      @user = FactoryBot.create(:user)
+      visit login_path
+      fill_in 'Email',        with: 'tester1@example.com'
+      fill_in 'Password',     with: 'passwordd'
+      click_button 'Log in'
+    end
+    it "error message" do
+      expect(page).to have_content "Invalid email/password combination"
+    end
+
+
   end
+  # feature "ログイン成功" do
+  #   before do
+  #     @user = FactoryBot.create(:user)
+  #     visit login_path
+  #     fill_in 'Email',        with: 'tester1@example.com'
+  #     fill_in 'Password',     with: 'password'
+  #     click_button 'Log in'
+  #   end
+  #   it "成功時のもの" do
+  #     expect(page).to have_content "Log out"
+  #   end
+
+
+  # end
+
+#イレギュラーケースを考える
+#削除・更新のテスト
+feature "ログインユーザはeditへ行ける" do
+  before do
+    @user = FactoryBot.create(:user)
+    # FactoryBot.create(:book, title: "hoga", author: "hu", publisher: "he", genre: "ga")
+    @book = FactoryBot.create(:book)
+    visit signup_path
+    # visit login_path
+    # fill_in 'Email',        with: 'tester1@example.com'
+    # fill_in 'Password',     with: 'password'
+    # click_button 'Log in'
+      fill_in 'Name',         with: 'hoge'
+      fill_in 'Email',        with: 'hoge@hoge.com'
+      fill_in 'Password',     with: 'hogehoge'
+      fill_in 'Confirmation', with: 'hogehoge'
+      click_button 'Create my account'
+    visit list_path
+    visit edit_book_path(@book.id)
+  end
+
+  it "edit page にとべる" do
+    expect(page).to have_content "Update Book Information"
+  end
+
+end
+end
+
+feature "ログインユーザはdeleteへ行ける" do
+  before do
+    @user = FactoryBot.create(:user)
+    # FactoryBot.create(:book, title: "hoga", author: "hu", publisher: "he", genre: "ga")
+    @book = FactoryBot.create(:book)
+    visit signup_path
+    # visit login_path
+    # fill_in 'Email',        with: 'tester1@example.com'
+    # fill_in 'Password',     with: 'password'
+    # click_button 'Log in'
+      fill_in 'Name',         with: 'hoge'
+      fill_in 'Email',        with: 'hoge@hoge.com'
+      fill_in 'Password',     with: 'hogehoge'
+      fill_in 'Confirmation', with: 'hogehoge'
+      click_button 'Create my account'
+    visit list_path
+    visit book_path(@book.id)
+    click_link 'delete'
+  end
+
+  it " confirmせずに本がdeeteされること" do
+    # expect(page.driver.browser.switch_to.alert.text).to eq "You sure?"
+    # link = find('You sure\?')
+    expect(page).to have_content 'Book deleted'
+
+  end
+
+end
+
+
+
+
 end

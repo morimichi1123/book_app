@@ -15,6 +15,7 @@ gem 'jbuilder',     '2.7.0'
 gem 'bootstrap-sass', '3.3.7'
 #gem 'therubyracer'
 gem 'capybara'
+
 gem 'webdrivers'
 
 group :development, :test do
